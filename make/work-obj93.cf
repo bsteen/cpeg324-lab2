@@ -1,0 +1,4 @@
+v 4
+file . "../4_bit_add_sub.vhdl" "e623aa09e50942b9c1e1c8babec775e96deef2b4" "20170401221315.952":
+  entity half_adder at 6( 125) + 0 on 11;
+  architecture behavioral of half_adder at 14( 273) + 0 on 12;
