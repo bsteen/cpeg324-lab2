@@ -6,7 +6,7 @@
 library ieee;
 use ieee.std_logic_1164.all;
 entity mux4to1 is
-    generic (SIZE : natural);
+    generic (SIZE : natural); --Can only be a natural number: 0, 1, 2, ...
     port (a, b, c, d : in std_logic_vector(SIZE-1 downto 0);
         sel : in std_logic_vector(1 downto 0);
         output : out std_logic_vector(SIZE-1 downto 0));

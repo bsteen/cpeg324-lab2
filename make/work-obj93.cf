@@ -1,0 +1,4 @@
+v 4
+file . "../demux1to2y.vhdl" "c0c06b932da78210062e59fedc8feb965f1ac900" "20170402181758.630":
+  entity demux1to2y at 6( 117) + 0 on 11;
+  architecture behavioral of demux1to2y at 16( 401) + 0 on 12;
