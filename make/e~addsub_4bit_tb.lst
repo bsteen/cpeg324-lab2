@@ -1,6 +1,6 @@
->/home/benjamin/Documents/Lab 2/ghdl/lib/gcc/x86_64-linux-gnu/4.9.3/vhdl//v93/ieee/
+>/home/benjamin/Documents/Lab 2/ghdl-0.33-x86_64-linux/lib/gcc/x86_64-linux-gnu/4.9.3/vhdl//v93/ieee/
 ../../src/ieee/std_logic_1164.v93
->/home/benjamin/Documents/Lab 2/ghdl/lib/gcc/x86_64-linux-gnu/4.9.3/vhdl//v93/ieee/
+>/home/benjamin/Documents/Lab 2/ghdl-0.33-x86_64-linux/lib/gcc/x86_64-linux-gnu/4.9.3/vhdl//v93/ieee/
 ../../src/ieee/std_logic_1164_body.v93
 >
 ../addsub_4bit_tb.vhdl

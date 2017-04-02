@@ -1,6 +1,6 @@
 -- Benjamin Steenkamer and Abraham McIlvaine
 -- CPEG 324-010
--- Lab 2: VHDL Componetns - gvhdl 4_bit_add_sub_tb.vhdl
+-- Lab 2: VHDL Componetns - addsub_4bit.vhdl
 -- 4/5/17
 
 library ieee;
@@ -49,7 +49,7 @@ begin   --(input_a(in), input_b(in), sum(out), overflow(out), underflow(out))
             assert o = patterns(n).expected_overflow report "bad overflow value" severity error;
             assert u = patterns(n).expected_underflow report "bad underflow value" severity error;
         end loop;
-        report "Tests passed." severity note;
+        report "Tests completed." severity note;
         wait; --  Wait forever; this will finish the simulation.
     end process;
 end architecture behavioral;

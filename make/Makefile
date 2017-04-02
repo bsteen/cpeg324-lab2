@@ -3,7 +3,7 @@
 # Lab 2: VHDL Componetns - Makefile
 # 4/5/17
 
-GHDL = ./../ghdl/bin/ghdl
+GHDL = ./../ghdl-0.33-x86_64-linux/bin/ghdl
 COMP = -a --ieee=standard
 EXE = -e --ieee=standard
 RUN = -r
@@ -15,7 +15,7 @@ test-4bit-addsub:
 #	Generate the executable for the test bench
 	$(GHDL) $(EXE) addsub_4bit_tb
 #	Run the test benchRun the test bench
-#	$(GHDL) $(RUN) 4_bit_add_sub_tb
+#	$(GHDL) $(RUN) addsub_4bit_tb
 
 clean:
 	rm *.o *.cf *.lst
