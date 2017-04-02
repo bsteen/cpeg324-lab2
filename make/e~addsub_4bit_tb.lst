@@ -1,6 +1,6 @@
->/media/benjamin/686A37356A36FF7E/Users/Benjamin/Documents/School/2016-2017/Spring 2017/CPEG 324-010/Labs/Lab 2/ghdl/lib/gcc/x86_64-linux-gnu/4.9.3/vhdl//v93/ieee/
+>/home/benjamin/Documents/Lab 2/ghdl/lib/gcc/x86_64-linux-gnu/4.9.3/vhdl//v93/ieee/
 ../../src/ieee/std_logic_1164.v93
->/media/benjamin/686A37356A36FF7E/Users/Benjamin/Documents/School/2016-2017/Spring 2017/CPEG 324-010/Labs/Lab 2/ghdl/lib/gcc/x86_64-linux-gnu/4.9.3/vhdl//v93/ieee/
+>/home/benjamin/Documents/Lab 2/ghdl/lib/gcc/x86_64-linux-gnu/4.9.3/vhdl//v93/ieee/
 ../../src/ieee/std_logic_1164_body.v93
 >
 ../addsub_4bit_tb.vhdl

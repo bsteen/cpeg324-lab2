@@ -1,11 +1,11 @@
 v 4
-file . "../addsub_4bit_tb.vhdl" "99f8bc31289e487b4a7a548a0d4cabf442dbb8cb" "20170402015236.582":
-  entity addsub_4bit_tb at 6( 128) + 0 on 17;
-  architecture behavioral of addsub_4bit_tb at 12( 218) + 0 on 18;
-file . "../addsub_4bit.vhdl" "9d83db38f902faccace02bafe6d4b722379c2049" "20170402015236.545":
-  entity half_adder at 7( 182) + 0 on 11;
-  architecture behavioral of half_adder at 14( 337) + 0 on 12;
-  entity full_adder at 22( 570) + 0 on 13;
-  architecture structural of full_adder at 29( 731) + 0 on 14;
-  entity addsub_4bit at 44( 1243) + 0 on 15;
-  architecture structural of addsub_4bit at 53( 1513) + 0 on 16;
+file . "../addsub_4bit_tb.vhdl" "99f8bc31289e487b4a7a548a0d4cabf442dbb8cb" "20170402015920.690":
+  entity addsub_4bit_tb at 6( 128) + 0 on 33;
+  architecture behavioral of addsub_4bit_tb at 12( 218) + 0 on 34;
+file . "../addsub_4bit.vhdl" "9d83db38f902faccace02bafe6d4b722379c2049" "20170402015920.660":
+  entity half_adder at 7( 182) + 0 on 27;
+  architecture behavioral of half_adder at 14( 337) + 0 on 28;
+  entity full_adder at 22( 570) + 0 on 29;
+  architecture structural of full_adder at 29( 731) + 0 on 30;
+  entity addsub_4bit at 44( 1243) + 0 on 31;
+  architecture structural of addsub_4bit at 53( 1513) + 0 on 32;
