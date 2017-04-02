@@ -11,55 +11,121 @@ end shiftreg_4bit_tb;
 
 architecture behav of shiftreg_4bit_tb is
 component shiftreg_4bit
-port(I : in std_logic_vector (3 downto 0);
-	I_SHIFT_IN : in std_logic;
-	sel : in std_logic_vector(1 downto 0); -- 00:hold; 01: shift left; 10: shift right; 11: load
-	clock : in std_logic;
-	enable : in std_logic;
-	O : out std_logic_vector(3 downto 0)
-);
+    port(I : in std_logic_vector (3 downto 0);
+    	I_SHIFT_IN : in std_logic;
+    	sel : in std_logic_vector(1 downto 0); -- 00:hold; 01: shift left; 10: shift right; 11: load
+    	clock : in std_logic;
+    	enable : in std_logic;
+    	O : out std_logic_vector(3 downto 0)
+    );
 end component;
---  Specifies which entity is bound with the component.
--- for shift_reg_0: shift_reg use entity work.shift_reg(rtl);
+
 signal i, o : std_logic_vector(3 downto 0);
 signal i_shift_in, clk, enable : std_logic;
 signal sel : std_logic_vector(1 downto 0);
-begin
---  Component instantiation.
-shift_reg_0: shift_reg port map (I => i, I_SHIFT_IN => i_shift_in, sel => sel, clock => clk, enable => enable, O => o);
 
---  This process does the real job.
-process
-type pattern_type is record
---  The inputs of the shift_reg.
-i: std_logic_vector (3 downto 0);
-i_shift_in, clock, enable: std_logic;
-sel: std_logic_vector(1 downto 0);
---  The expected outputs of the shift_reg.
-o: std_logic_vector (3 downto 0);
-end record;
---  The patterns to apply.
-type pattern_array is array (natural range <>) of pattern_type;
-constant patterns : pattern_array :=
-(("0001", '1', '0', '0', "11", "0000"),
-("0001", '0', '0', '0', "00", "0001"));
 begin
---  Check each pattern.
-for n in patterns'range loop
---  Set the inputs.
-i <= patterns(n).i;
-i_shift_in <= patterns(n).i_shift_in;
-sel <= patterns(n).sel;
-clk <= patterns(n).clock;
-enable <= patterns(n).enable;
---  Wait for the results.
-wait for 1 ns;
---  Check the outputs.
-assert o = patterns(n).o
-report "bad output value" severity error;
-end loop;
-assert false report "end of test" severity note;
---  Wait forever; this will finish the simulation.
-wait;
+shiftreg_4bit_0: shiftreg_4bit port map (i, i_shift_in, sel, clk, enable, o);
+
+process
+    type pattern_type is record
+        i: std_logic_vector (3 downto 0);
+        i_shift_in, clock, enable: std_logic;
+        sel: std_logic_vector(1 downto 0);
+        expected_o: std_logic_vector (3 downto 0);
+    end record;
+    type pattern_array is array (natural range <>) of pattern_type;
+    constant patterns : pattern_array :=
+    --i_shift_in = 0, clock = 0, enable = 1, sel = XX
+    (("1010", '0', '0', '1', "11", "0000"),
+    ("0110", '0', '0', '1', "11", "0000"),
+    ("1010", '0', '0', '1', "10", "0000"),
+    ("0110", '0', '0', '1', "10", "0000"),
+    ("1010", '0', '0', '1', "01", "0000"),
+    ("0110", '0', '0', '1', "01", "0000"),
+    ("1010", '0', '0', '1', "00", "0000"),
+    ("0110", '0', '0', '1', "00", "0000"),
+    --i_shift_in = 1, clock = 0, enable = 1, sel = XX
+    ("1010", '1', '0', '1', "11", "0000"),
+    ("0110", '1', '0', '1', "11", "0000"),
+    ("1010", '1', '0', '1', "10", "0000"),
+    ("0110", '1', '0', '1', "10", "0000"),
+    ("1010", '1', '0', '1', "01", "0000"),
+    ("0110", '1', '0', '1', "01", "0000"),
+    ("1010", '1', '0', '1', "00", "0000"),
+    ("0110", '1', '0', '1', "00", "0000"),
+    --i_shift_in = 0, clock = 1, enable = 1, sel = XX
+    ("1010", '0', '1', '1', "11", "1010"),--load
+    ("0110", '0', '1', '1', "11", "0110"),--load
+    ("1010", '0', '1', '1', "10", "0011"),--shift right
+    ("0110", '0', '1', '1', "10", "0001"),--shift right
+    ("1010", '0', '1', '1', "01", "0010"),--shift left
+    ("0110", '0', '1', '1', "01", "0100"),--shift left
+    ("1010", '0', '1', '1', "00", "0100"),--hold
+    ("0110", '0', '1', '1', "00", "0100"),--hold
+    --i_shift_in = 1, clock = 1, enable = 1, sel = XX
+    ("1010", '1', '1', '1', "11", "1010"),--load
+    ("0110", '1', '1', '1', "11", "0110"),--load
+    ("1010", '1', '1', '1', "10", "1011"),--shift right
+    ("0110", '1', '1', '1', "10", "1101"),--shift right
+    ("1010", '1', '1', '1', "01", "1011"),--shift left
+    ("0110", '1', '1', '1', "01", "0111"),--shift left
+    ("1010", '1', '1', '1', "00", "0111"),--hold
+    ("0110", '1', '1', '1', "00", "0111"),--hold
+    --i_shift_in = 0, clock = 0, enable = 0, sel = XX
+    ("1010", '0', '0', '0', "11", "0000"),
+    ("0110", '0', '0', '0', "11", "0000"),
+    ("1010", '0', '0', '0', "10", "0000"),
+    ("0110", '0', '0', '0', "10", "0000"),
+    ("1010", '0', '0', '0', "01", "0000"),
+    ("0110", '0', '0', '0', "01", "0000"),
+    ("1010", '0', '0', '0', "00", "0000"),
+    ("0110", '0', '0', '0', "00", "0000"),
+    --i_shift_in = 1, clock = 0, enable = 0, sel = XX
+    ("1010", '1', '0', '0', "11", "0000"),
+    ("0110", '1', '0', '0', "11", "0000"),
+    ("1010", '1', '0', '0', "10", "0000"),
+    ("0110", '1', '0', '0', "10", "0000"),
+    ("1010", '1', '0', '0', "01", "0000"),
+    ("0110", '1', '0', '0', "01", "0000"),
+    ("1010", '1', '0', '0', "00", "0000"),
+    ("0110", '1', '0', '0', "00", "0000"),
+    --i_shift_in = 0, clock = 1, enable = 0, sel = XX
+    ("1010", '0', '1', '0', "11", "0000"),--load
+    ("0110", '0', '1', '0', "11", "0000"),--load
+    ("1010", '0', '1', '0', "10", "0000"),--shift right
+    ("0110", '0', '1', '0', "10", "0000"),--shift right
+    ("1010", '0', '1', '0', "01", "0000"),--shift left
+    ("0110", '0', '1', '0', "01", "0000"),--shift left
+    ("1010", '0', '1', '0', "00", "0000"),--hold
+    ("0110", '0', '1', '0', "00", "0000"),--hold
+    --i_shift_in = 1, clock = 1, enable = 0, sel = XX
+    ("1010", '1', '1', '0', "11", "0000"),--load
+    ("0110", '1', '1', '0', "11", "0000"),--load
+    ("1010", '1', '1', '0', "10", "0000"),--shift right
+    ("0110", '1', '1', '0', "10", "0000"),--shift right
+    ("1010", '1', '1', '0', "01", "0000"),--shift left
+    ("0110", '1', '1', '0', "01", "0000"),--shift left
+    ("1010", '1', '1', '0', "00", "0000"),--hold
+    ("0110", '1', '1', '0', "00", "0000")--hold
+    );
+begin
+    for n in patterns'range loop
+        i <= patterns(n).i;
+        i_shift_in <= patterns(n).i_shift_in;
+        sel <= patterns(n).sel;
+        enable <= patterns(n).enable;
+        clk <= '0';
+        wait for 1 ns;
+
+        clk <= patterns(n).clock; --Create rising edge if there should be one.
+        wait for 1 ns;
+
+        assert o = patterns(n).expected_o
+        report "BAD OUPUT VALUE" severity error;
+        wait for 1 ns;
+    end loop;
+    report "END OF TEST" severity note;
+    wait;
 end process;
 end behav;

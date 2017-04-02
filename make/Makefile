@@ -40,8 +40,8 @@ test-dump-demux1to2y: make-demux1to2y
 ###################################################
 make-shiftreg_4bit:
 	$(GHDL) $(COMP) ../shiftreg_4bit.vhdl
-#	$(GHDL) $(COMP) ../shiftreg_4bit_tb.vhdl
-#	$(GHDL) $(EXE) shiftreg_4bit_tb
+	$(GHDL) $(COMP) ../shiftreg_4bit_tb.vhdl
+	$(GHDL) $(EXE) shiftreg_4bit_tb
 
 test-shiftreg_4bit: make-shiftreg_4bit
 	$(GHDL) $(RUN) shiftreg_4bit_tb
