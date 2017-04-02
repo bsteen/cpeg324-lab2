@@ -8,14 +8,19 @@ COMP = -a --ieee=standard
 EXE = -e --ieee=standard
 RUN = -r
 
-test-4bit-addsub:
+make-addsub_4bit:
 #	Compile the 2 VHDL files
 	$(GHDL) $(COMP) ../addsub_4bit.vhdl
 	$(GHDL) $(COMP) ../addsub_4bit_tb.vhdl
 #	Generate the executable for the test bench
 	$(GHDL) $(EXE) addsub_4bit_tb
+
+test-addsub_4bit: make-addsub_4bit
 #	Run the test benchRun the test bench
-#	$(GHDL) $(RUN) addsub_4bit_tb
+	$(GHDL) $(RUN) addsub_4bit_tb
+
+test-dump-addsub_4bit: make-addsub_4bit
+	$(GHDL) $(RUN) addsub_4bit_tb --vcd=addsub_4bit_tb.vcd
 
 clean:
-	rm *.o *.cf *.lst
+	rm -f *.o *.cf *.out *.vcd

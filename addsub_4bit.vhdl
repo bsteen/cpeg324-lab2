@@ -56,13 +56,14 @@ component full_adder is
         sum, c_out : out std_logic);
 end component full_adder;
 
-signal c0, c1, c2, error: std_logic;
+signal c0, c1, c2, s3: std_logic;
 begin                     --(a(in), b(in), c_in(in), sum(out), c_out(out))
     fa0: full_adder port map(input_a(0), input_b(0),'0', sum(0), c0); --c_in for the first full_adder is always 0, i.e. nothing.
     fa1: full_adder port map(input_a(1), input_b(1), c0, sum(1), c1);
     fa2: full_adder port map(input_a(2), input_b(2), c1, sum(2), c2);
-    fa3: full_adder port map(input_a(3), input_b(3), c2, sum(3), error);
-    overflow <= error and (not input_a(3) and not input_b(3));--If both numbers are positive(leading 0) there could be overflow.
-    underflow <= error and (input_a(3) and input_b(3));--If both numbers are negative(leading 1) there could be underflow.
+    fa3: full_adder port map(input_a(3), input_b(3), c2, s3, open);
+    overflow <= s3 and (not input_a(3) and not input_b(3));--If both numbers are positive(leading 0) and ouput is negative.
+    underflow <= not(s3) and (input_a(3) and input_b(3));--If both numbers are negative(leading 1) and ouput is positive.
+    sum(3) <= s3;
 end architecture structural;
 --------------------------------------------------------
