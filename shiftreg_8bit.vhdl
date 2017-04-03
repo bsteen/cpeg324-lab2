@@ -34,11 +34,11 @@ begin
 
     with sel select shift0_carry <=
         I_SHIFT_IN when "01", --When left shifting, the lower shifter should get the shift in.
-        data(4) when "10", --carry in the right(lsb) most value of upper shifter when right shifting.
+        data(4) when "10", --Carry in the right(lsb) most value of upper shifter when right shifting.
         '0' when others; --Doesn't matter what the shift in value is when not shifting left or right.
 
     with sel select shift1_carry <=
-        data(3) when "01", --carry in the left(msb) most value of lower shifter when right shifting.
+        data(3) when "01", --Carry in the left(msb) most value of lower shifter when left shifting.
         I_SHIFT_IN when "10", --When right shifting, the upper shifter should get the shift in.
         '0' when others; --Doesn't matter what the shift in value is when not shifting left or right.
 
