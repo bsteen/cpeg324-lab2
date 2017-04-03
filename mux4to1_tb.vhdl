@@ -1,6 +1,6 @@
 -- Benjamin Steenkamer and Abraham McIlvaine
 -- CPEG 324-010
--- Lab 2: VHDL Components -  mux4to1_tb.vhdl
+-- Lab 2: VHDL Components - mux4to1_tb.vhdl
 -- 4/5/17
 
 library ieee;
@@ -42,7 +42,7 @@ begin
         sel <= "11";
         wait for 5 ns;
         assert output = "10000001" report "bad ouput" severity error;
-        report "Tests completed." severity note;
+        report "TESTS COMPLETED." severity note;
         wait;
     end process;
 end architecture behavioral;

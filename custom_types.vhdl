@@ -10,6 +10,7 @@ package custom_types is
     type array_2d is array (natural range <>, natural range <>) of std_logic;
 end custom_types;
 --We could not get VHDL 2008 to work, so we decided to use a 2D array made up
---of individual std_logics. Because of this, we have to individual access each position
+--of individual std_logics. Because of this, we have to individualy access each position
 --in each "vector."
---If we did get VHDL 2008 to work, we would have used a 1D array made up of unitilized std_logic_vectors.
+--Each row can be viewed as an output "vector." The columns in a row can be viewed as the
+--bits of each output "vector."

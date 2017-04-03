@@ -1,6 +1,6 @@
 -- Benjamin Steenkamer and Abraham McIlvaine
 -- CPEG 324-010
--- Lab 2: VHDL Components -  mux4-1.vhdl
+-- Lab 2: VHDL Components - mux4-1.vhdl
 -- 4/5/17
 
 library ieee;

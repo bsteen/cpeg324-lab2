@@ -14,15 +14,15 @@ end demux1to2y_tb;
 
 architecture behavioral of demux1to2y_tb is
 component demux1to2y
-    generic(x, y : natural); --Can only be a natural numbers. x is the bit width of I/O lines. 2^y is the number of ouput lines.
+    generic(x, y : natural); --Can only be natural numbers. x is the bit width of I/O lines. 2^y is the number of ouput lines.
     port(input : in std_logic_vector(x-1 downto 0);
         sel : in std_logic_vector(y-1 downto 0);
         enable : in std_logic;
         output : out array_2d(2**y - 1 downto 0, x-1 downto 0));
 end component;
 
-signal test_input : std_logic_vector(2 downto 0):= "101";--x = 3
-signal test_sel : std_logic_vector(2 downto 0) := "000";--y = 3
+signal test_input : std_logic_vector(2 downto 0):= "101";--x = 3 bits
+signal test_sel : std_logic_vector(2 downto 0) := "000";--y = 3 bits
 signal test_enable : std_logic := '1';
 signal test_output : array_2d(7 downto 0, 2 downto 0);--2^3(8) ouputs, each 3 bits wide.
 
