@@ -13,18 +13,18 @@ entity demux1to2y is
     port(input : in std_logic_vector(x-1 downto 0);
         sel : in std_logic_vector(y-1 downto 0) ;
         enable : in std_logic;
-        output : out array_2d(2**y - 1 downto 0, x-1 downto 0));
+        output : out array_2d(2**y - 1 downto 0, x-1 downto 0)); --We couldn't get VHDL 2008 to work, so selected for an array of std_logics.
 end entity demux1to2y;
 
 architecture behavioral of demux1to2y is
 begin
     process(sel, enable, input) is
-        constant output_length : integer := 2**y - 1;
-        constant data_length : integer := x - 1;
-        variable sel_int : integer;
+        constant output_length : natural := 2**y - 1;
+        constant data_length : natural := x - 1;
+        variable sel_int : natural;
     begin
-        sel_int := to_integer(unsigned(sel)); --This NEEDS to be initlized here. If you only initlize it before
-        --the process begins, all tests will fail.
+        sel_int := to_integer(unsigned(sel)); --This NEEDS to be initlized here.
+        --Initializing the variable before the process beings will only initialize it once, not every time the process is called.
 
         if enable = '1' then --Selected output line gets input data, rest get value of 0.
             for i in 0 to output_length loop
@@ -36,7 +36,7 @@ begin
                     end if;
                 end loop;
             end loop;
-        else -- All lines ouput should be zero
+        else -- All lines ouput should be zero if enable = 0
             for i in 0 to output_length loop
                 for j in 0 to data_length loop
                     output(i, j) <= '0';

@@ -22,6 +22,7 @@ test-mux4to1: make-mux4to1
 
 test-dump-mux4to1: make-mux4to1
 	$(GHDL) $(RUN) mux4to1_tb --vcd=mux4to1_tb.vcd
+#Use a tool like GTK wave to view the vcd file and see the waveforms.
 ###################################################
 
 ###################################################

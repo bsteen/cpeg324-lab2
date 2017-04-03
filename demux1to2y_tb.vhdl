@@ -2,7 +2,7 @@
 -- CPEG 324-010
 -- Lab 2: VHDL Components - demux1to2y_tb.vhdl
 -- 4/5/17
--->>>>> For this test x=3, and y=3 <<<<<
+-->>>>> For this test x = 3, and y = 3 <<<<<
 
 library ieee;
 use ieee.std_logic_1164.all;
@@ -26,26 +26,26 @@ signal test_sel : std_logic_vector(2 downto 0) := "000";--y = 3
 signal test_enable : std_logic := '1';
 signal test_output : array_2d(7 downto 0, 2 downto 0);--2^3(8) ouputs, each 3 bits wide.
 
---Ouput signal for GTK wave.
+--Ouput signal so waveforms can be viewed in GTK Wave. Our custom array_2d can't be viewed in it.
 signal out0, out1, out2, out3, out4, out5, out6, out7: std_logic_vector(2 downto 0) := "000";
 
 begin
     demux1to2y_0: demux1to2y generic map(3,3) port map(test_input, test_sel, test_enable, test_output);
     process
-        variable test_sel_int : integer;
+        variable test_sel_int : natural;
     begin
-        --Test when enabled
+        --Test demux when enabled
+        test_enable <= '1';
         test_input <= "110";
         test_sel <= "000";
-        test_enable <= '1';
 
-        for i in 0 to 7 loop --Loop through outputs
+        for i in 0 to 7 loop --Loop through all 2^3 (8) output lines
             wait for 1 ns;
-            if i = to_integer(unsigned(test_sel)) then
+            if i = to_integer(unsigned(test_sel)) then --The selected line should have the input value
                 assert test_output(i, 0) = test_input(0) report "BAD OUPUT VALUE, for selected line" severity error;
                 assert test_output(i, 1) = test_input(1) report "BAD OUPUT VALUE, for selected line" severity error;
                 assert test_output(i, 2) = test_input(2) report "BAD OUPUT VALUE, for selected line" severity error;
-            else
+            else --All other non-selected lines should have all 0s.
                 assert test_output(i, 0) = '0' report "BAD OUPUT VALUE, for non-selected line" severity error;
                 assert test_output(i, 1) = '0' report "BAD OUPUT VALUE, for non-selected line" severity error;
                 assert test_output(i, 2) = '0' report "BAD OUPUT VALUE, for non-selected line" severity error;
@@ -54,11 +54,10 @@ begin
             test_sel <= std_logic_vector(unsigned(test_sel) + 1); --Increment the select line.
         end loop;
 
-        --Test when disbaled
+        --Test demux when disbaled
         test_enable <= '0';
         test_sel <= "000";
-        test_sel <= "000";
-        for i in 0 to 7 loop --Loop through outputs
+        for i in 0 to 7 loop --Loop through outputs, since disbaled, all should hold zeros.
             wait for 1 ns;
             assert test_output(i, 0) = '0' report "BAD OUPUT VALUE, for non-selected line" severity error;
             assert test_output(i, 1) = '0' report "BAD OUPUT VALUE, for non-selected line" severity error;
@@ -66,11 +65,11 @@ begin
             test_sel <= std_logic_vector(unsigned(test_sel) + 1); --Increment the select line.
         end loop;
 
-        report "END OF TEST" severity note;
+        report "END OF TESTS" severity note;
         wait;
     end process;
 
-    --Use for viewing the waveform ouputs in GTK Wave.
+    --Used for viewing the waveform ouputs in GTK Wave.
     out0(0)<=test_output(0,0);
     out0(1)<=test_output(0,1);
     out0(2)<=test_output(0,2);
