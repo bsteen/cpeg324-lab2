@@ -9,7 +9,7 @@ use ieee.std_logic_1164.all;
 entity shiftreg_4bit_tb is
 end shiftreg_4bit_tb;
 
-architecture behav of shiftreg_4bit_tb is
+architecture behavioral of shiftreg_4bit_tb is
 component shiftreg_4bit
     port(I : in std_logic_vector (3 downto 0);
     	I_SHIFT_IN : in std_logic;
@@ -128,4 +128,4 @@ begin
     report "END OF TEST" severity note;
     wait;
 end process;
-end behav;
+end behavioral;

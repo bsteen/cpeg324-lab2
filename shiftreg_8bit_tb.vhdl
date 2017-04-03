@@ -121,8 +121,7 @@ begin
         clk <= patterns(n).clock; --Create rising edge if there should be one.
         wait for 1 ns;
 
-        assert o = patterns(n).expected_o
-        report "BAD OUPUT VALUE" severity error;
+        assert o = patterns(n).expected_o report "BAD OUPUT VALUE" severity error;
         wait for 1 ns;
     end loop;
     report "END OF TEST" severity note;

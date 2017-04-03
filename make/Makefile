@@ -26,9 +26,10 @@ test-dump-mux4to1: make-mux4to1
 
 ###################################################
 make-demux1to2y:
+	$(GHDL) $(COMP) ../custom_types.vhdl
 	$(GHDL) $(COMP) ../demux1to2y.vhdl
-#	$(GHDL) $(COMP) ../demux1to2y_tb.vhdl
-#	$(GHDL) $(EXE) demux1to2y_tb
+	$(GHDL) $(COMP) ../demux1to2y_tb.vhdl
+	$(GHDL) $(EXE) demux1to2y_tb
 
 test-demux1to2y: make-demux1to2y
 	$(GHDL) $(RUN) demux1to2y_tb
