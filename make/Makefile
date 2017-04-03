@@ -51,6 +51,20 @@ test-dump-shiftreg_4bit: make-shiftreg_4bit
 ###################################################
 
 ###################################################
+make-shiftreg_8bit:
+	$(GHDL) $(COMP) ../shiftreg_4bit.vhdl
+	$(GHDL) $(COMP) ../shiftreg_8bit.vhdl
+	$(GHDL) $(COMP) ../shiftreg_8bit_tb.vhdl
+	$(GHDL) $(EXE) shiftreg_8bit_tb
+
+test-shiftreg_8bit: make-shiftreg_8bit
+	$(GHDL) $(RUN) shiftreg_8bit_tb
+
+test-dump-shiftreg_8bit: make-shiftreg_8bit
+	$(GHDL) $(RUN) shiftreg_8bit_tb --vcd=shiftreg_8bit_tb.vcd
+###################################################
+
+###################################################
 make-addsub_4bit:
 	$(GHDL) $(COMP) ../addsub_4bit.vhdl
 	$(GHDL) $(COMP) ../addsub_4bit_tb.vhdl
