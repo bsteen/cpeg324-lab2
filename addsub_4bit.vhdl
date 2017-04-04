@@ -101,7 +101,7 @@ with addsub_sel select second_term <=
     negative_second_term when others; --Use negative second term when subtracting becasue A - B = A + (-B)
 
 overflow <= of0 or (input_b(3) and (not(input_b(2))) and (not(input_b(1))) and (not(input_b(0))) and addsub_sel);
-    --You can't do X-(-8) since it becomes, X + 8 and you can't internally represent a -8.
+    --You can't do X-(-8) since it becomes, X + 8 and you can't internally represent a +8.
 
 end architecture structural;
 --------------------------------------------------------
