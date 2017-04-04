@@ -1,6 +1,6 @@
 -- Benjamin Steenkamer and Abraham McIlvaine
 -- CPEG 324-010
--- Lab 2: VHDL Components -  shiftreg_4bit.vhdl
+-- Lab 2: VHDL Components - shiftreg_4bit.vhdl
 -- 4/5/17
 
 library ieee;

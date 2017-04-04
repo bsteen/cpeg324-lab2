@@ -1,6 +1,6 @@
 -- Benjamin Steenkamer and Abraham McIlvaine
 -- CPEG 324-010
--- Lab 2: VHDL Componetns - addsub_4bit.vhdl
+-- Lab 2: VHDL Componetns - addsub_4bit_tb.vhdl
 -- 4/5/17
 
 library ieee;
